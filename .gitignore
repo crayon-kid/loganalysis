@@ -1,0 +1,9 @@
+.eslintrc.json
+.vscodeignore
+CHANGELOG.md
+vsc-extension-quickstart.md
+.vscode
+test
+.idea
+.vscode
+node_modules

@@ -1,0 +1,103 @@
+{
+	"name": "loganalysis",
+	"displayName": "LogAnalysis",
+	"description": "日志统计分析",
+	"version": "0.0.1",
+	"publisher": "linsim",
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"icon": "log_icon.jpg",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:log",
+		"onCommand:extension.LogPathAnalysis",
+		"onCommand:extension.LogFileAnalysis"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "日志分析配置",
+			"properties": {
+				"logtag.Debug": {
+					"type": "boolean",
+					"default": true,
+					"description": "logtag Debug是否启用"
+				},
+				"logtag.Error": {
+					"type": "boolean",
+					"default": true,
+					"description": "logta Error是否启用"
+				},
+				"logtag.Trans": {
+					"type": "boolean",
+					"default": true,
+					"description": "logta Trans是否启用"
+				},
+				"logtag.Info": {
+					"type": "boolean",
+					"default": true,
+					"description": "logta Info是否启用"
+				},
+				"logtag._Self": {
+					"type": "array",
+					"default": [],
+					"description": "自定 Logtags \"logtag._Self\":[{\"tag\":\"regulex\",\"name\":\"tagname\"},{...}]"
+				}
+			}
+		},
+		"languages": [
+			{
+				"id": "NDlog",
+				"aliases": [
+					"Log"
+				],
+				"extensions": [
+					".log",
+					".LOG",
+					".logspy",
+					".filespy"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "NDlog",
+				"path": "./log-syntax.json",
+				"scopeName": "source.log"
+			}
+		],
+		"commands": [
+			{
+				"command": "extension.LogPathAnalysis",
+				"title": "mutilog,当前文件夹下全局搜索"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.LogFileAnalysis",
+				"key": "ctrl+l",
+				"mac": "cmd+l",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.25",
+		"eslint": "^4.11.0",
+		"github-release": "^0.2.0",
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25"
+	},
+	"dependencies": {
+		"github-releases": "^0.4.2"
+	}
+}
