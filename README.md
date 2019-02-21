@@ -13,7 +13,6 @@
 
 默认四个tag已开启，可在对应设置界面中取消勾选<br />
 可自定义tags在   设置(setting) -> 扩展(extension) -> 日志分析配置 -> Logtag:_Self -> 选中在 setting.json中编辑 <br />
----
 注意：用户设置中修改为全局，工作区设置为当前文件夹或工作区          自动内容例子如下：<br />
 ```
 "logtag._Self":
