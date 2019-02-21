@@ -4,10 +4,14 @@
 	"description": "日志统计分析",
 	"version": "0.0.1",
 	"publisher": "linsim",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/crayon-kid/loganalysis.git"
+	},
 	"engines": {
 		"vscode": "^1.30.0"
 	},
-	"icon": "log_icon.jpg",
+	"icon": "src/log_icon.jpg",
 	"categories": [
 		"Other"
 	],
