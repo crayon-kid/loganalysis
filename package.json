@@ -28,7 +28,7 @@
 			"properties": {
 				"logtag.Debug": {
 					"type": "boolean",
-					"default": true,
+					"default": false,
 					"description": "logtag Debug是否启用"
 				},
 				"logtag.Error": {
@@ -38,18 +38,23 @@
 				},
 				"logtag.Trans": {
 					"type": "boolean",
-					"default": true,
+					"default": false,
 					"description": "logta Trans是否启用"
 				},
 				"logtag.Info": {
 					"type": "boolean",
-					"default": true,
+					"default": false,
 					"description": "logta Info是否启用"
 				},
 				"logtag._Self": {
 					"type": "array",
 					"default": [],
 					"description": "自定 Logtags \"logtag._Self\":[{\"tag\":\"regulex\",\"name\":\"tagname\"},{...}]"
+				},
+				"logtag.Context": {
+					"type": "boolean",
+					"default": false,
+					"description": "搜索结果 上下文是否启用"
 				}
 			}
 		},

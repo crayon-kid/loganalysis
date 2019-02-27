@@ -61,6 +61,7 @@ class Activeprovider{
     if (this.config.Debug){
       this.tags.push({tag:"\\b(D|d)[0-9]{4}\\b",name:"Debug"})
     }
+    //如果想统计剩余的Error数量，从正则上下手。。。
     if (this.config.Error){
       this.tags.push({tag:"\\b(E|e)[0-9]{4}\\b",name:"Error"})
     }
@@ -98,7 +99,7 @@ class Activeprovider{
         return  //跳过这个关键词
       }
       try {
-        searchResults = runCommandSync(searchPath,query.tag)
+        searchResults = this.runCommandSync(searchPath,query.tag)
       } catch (err) {
         return `${err}`
       }
@@ -188,6 +189,17 @@ class Activeprovider{
 
     return true
   }
+
+  runCommandSync(path,query) {
+    //不区别大小写，行号列号，显示上下文两行,正则匹配(默认是启用的)
+    // return execSync(`${rgPath} --ignore-case --line-number --column --context=2 -e "${query.query}" --file ${document.fileName}` , execOpts)
+    if (this.config.Context)
+    {
+      return execSync(`${rgPath} --ignore-case --line-number --column --context=2 -e "${query}" ${path}` , execOpts)
+    }else{
+      return execSync(`${rgPath} --ignore-case --line-number --column -e "${query}" ${path}` , execOpts)
+    }
+  }
    
 }
 
@@ -195,24 +207,17 @@ module.exports = Activeprovider
 
 
 function formatLine(splitLine) {
-    return {
-      line: splitLine[1],
-      column: splitLine[2],
-      result: splitLine[3]
-    }
+  return {
+    line: splitLine[1],
+    column: splitLine[2],
+    result: splitLine[3]
   }
-  
-  function formatContextLine(splitLine) {
-    return {
-      line: splitLine[1],
-      column: undefined,
-      result: splitLine[2]
-    }
-  }
+}
 
-  
-  function runCommandSync(path,query) {
-    //不区别大小写，行号列号，显示上下文两行,正则匹配(默认是启用的)
-    // return execSync(`${rgPath} --ignore-case --line-number --column --context=2 -e "${query.query}" --file ${document.fileName}` , execOpts)
-    return execSync(`${rgPath} --ignore-case --line-number --column --context=2 -e "${query}" ${path}` , execOpts)
+function formatContextLine(splitLine) {
+  return {
+    line: splitLine[1],
+    column: undefined,
+    result: splitLine[2]
   }
+}

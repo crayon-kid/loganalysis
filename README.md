@@ -7,11 +7,12 @@
 ## How to use
 
 单文本的日志分析(`ctrl+l`)<br />
-多文本的日志分析(`ctrl+shift+p`+输入`ndlog`+回车输入`搜索的tag（正则）`)<br />
+多文本的日志分析(`ctrl+shift+p`+输入`mutilog`+回车输入`搜索的tag（正则）`)<br />
 
 ## tags
 
-默认四个tag已开启，可在对应设置界面中取消勾选<br />
+四个默认搜索tag，默认只开启Error的搜索。可在对应设置界面中勾选<br />
+默认搜索上下文已关闭，需要可在对应设置界面中勾选<br />
 可自定义tags在   设置(setting) -> 扩展(extension) -> 日志分析配置 -> Logtag:_Self -> 选中在 setting.json中编辑 <br />
 !!!!注意：用户设置中修改为全局，工作区设置为当前文件夹或工作区          自动内容例子如下：<br />
 ```
