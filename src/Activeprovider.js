@@ -10,6 +10,12 @@ const execOpts = {
   maxBuffer: 1024 * 10000    //（1M?）可以适当修改大小，如果搜索内容匹配过多的话可能会让搜索报错
 }
 
+const tags_name = {
+  Debug : "Debug",
+  Error : "Error",
+  Trans : "Trans",
+  Info : "Info",
+}
 //单文件搜索内容
 class Activeprovider{
   constructor() {
@@ -58,21 +64,21 @@ class Activeprovider{
     // this.tags = JSON.parse(temp_tags.toString());
     this.tags = []
 
+    if(this.config._Self.length > 0){
+      this.tags = this.tags.concat(this.config._Self)
+    }
     if (this.config.Debug){
-      this.tags.push({tag:"\\b(D|d)[0-9]{4}\\b",name:"Debug"})
+      this.tags.push({tag:"\\b(D|d)[0-9]{4}\\b",name:tags_name.Debug})
     }
     //如果想统计剩余的Error数量，从正则上下手。。。
     if (this.config.Error){
-      this.tags.push({tag:"\\b(E|e)[0-9]{4}\\b",name:"Error"})
+      this.tags.push({tag:"\\b(E|e)[0-9]{4}\\b",name:tags_name.Error})
     }
     if (this.config.Trans){
-      this.tags.push({tag:"\\b(T|t)[0-9]{4}\\b",name:"Trans"})
+      this.tags.push({tag:"\\b(T|t)[0-9]{4}\\b",name:tags_name.Trans})
     }
     if (this.config.Info){
-      this.tags.push({tag:"\\b(I|i)[0-9]{4}\\b",name:"Info"})
-    }
-    if(this.config._Self.length > 0){
-      this.tags = this.tags.concat(this.config._Self)
+      this.tags.push({tag:"\\b(I|i)[0-9]{4}\\b",name:tags_name.Info})
     }
   }
 
@@ -92,7 +98,7 @@ class Activeprovider{
 
     let allcontent = [`${searchPath} tags：`]
     let lineNumber = 0
-
+    
     this.tags.forEach( query => {
       let searchResults = null
       if (query == null){

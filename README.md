@@ -32,4 +32,9 @@
 详情可查看：[https://github.com/Microsoft/vscode/issues/15178 ](https://github.com/Microsoft/vscode/issues/15178 ) <br />
 因此可能在修改前对文本进行过分析的分析文件可能残留。当旧文本残留时不会进行新的分析操作，而是从内存中将旧分析文件取出显示 <br />
 
+## notice
+
+正则匹配总有概率出现交叉的部分，也就是某个内容可能会被多个tag匹配到，这取决于你设置的tags <br />
+在线正则测试的网址：[http://tool.oschina.net/regex/](http://tool.oschina.net/regex/) <br />
+
 **Enjoy!**
