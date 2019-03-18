@@ -34,7 +34,7 @@
 
 ## notice
 
-正则匹配总有概率出现交叉的部分，也就是某个内容可能会被多个tag匹配到，这取决于你设置的tags <br />
+正则匹配由于设置问题，某个内容可能会被多个tag匹配到，这取决于你设置的tags <br />
 在线正则测试的网址：[http://tool.oschina.net/regex/](http://tool.oschina.net/regex/) <br />
 
 **Enjoy!**

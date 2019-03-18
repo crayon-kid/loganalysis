@@ -68,17 +68,17 @@ class Activeprovider{
       this.tags = this.tags.concat(this.config._Self)
     }
     if (this.config.Debug){
-      this.tags.push({tag:"\\b(D|d)[0-9]{4}\\b",name:tags_name.Debug})
+      this.tags.push({tag:"\\b(D)[0-9]{4}\\b",name:tags_name.Debug})
     }
     //如果想统计剩余的Error数量，从正则上下手。。。
     if (this.config.Error){
-      this.tags.push({tag:"\\b(E|e)[0-9]{4}\\b",name:tags_name.Error})
+      this.tags.push({tag:"\\b(E)[0-9]{4}\\b",name:tags_name.Error})
     }
     if (this.config.Trans){
-      this.tags.push({tag:"\\b(T|t)[0-9]{4}\\b",name:tags_name.Trans})
+      this.tags.push({tag:"\\b(T)[0-9]{4}\\b",name:tags_name.Trans})
     }
     if (this.config.Info){
-      this.tags.push({tag:"\\b(I|i)[0-9]{4}\\b",name:tags_name.Info})
+      this.tags.push({tag:"\\b(I)[0-9]{4}\\b",name:tags_name.Info})
     }
   }
 
@@ -123,7 +123,7 @@ class Activeprovider{
         let formattedLine;
         if (searchResult == '--') {
           resultsByFile.push({seperator: true})
-        }else if(searchResult.match(query.tag))
+        }else if(searchResult.match(new RegExp(query.tag, "i"))) //不区别大小写
         {
           let splitLine = searchResult.match(/(\d+):(\d+):(.*)/)
           if (splitLine) {
@@ -178,7 +178,7 @@ class Activeprovider{
     } = formattedLine
     const col = parseInt(column, 10)
     const preamble = `  ${line}:`.length
-    const match = formattedLine.result.match(query)
+    const match = formattedLine.result.match(new RegExp(query, "i"))
     if (match == null) {
       return false
     }
